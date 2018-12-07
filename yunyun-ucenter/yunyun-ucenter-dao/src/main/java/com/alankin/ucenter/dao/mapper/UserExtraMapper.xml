@@ -1,0 +1,386 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.alankin.ucenter.dao.mapper.UserExtraMapper">
+  <resultMap id="BaseResultMap" type="com.alankin.ucenter.dao.model.UserExtra">
+    <id column="uid" jdbcType="BIGINT" property="uid" />
+    <result column="vendor" jdbcType="VARCHAR" property="vendor" />
+    <result column="client_name" jdbcType="VARCHAR" property="clientName" />
+    <result column="client_version" jdbcType="VARCHAR" property="clientVersion" />
+    <result column="os_name" jdbcType="VARCHAR" property="osName" />
+    <result column="os_version" jdbcType="VARCHAR" property="osVersion" />
+    <result column="device_name" jdbcType="VARCHAR" property="deviceName" />
+    <result column="device_id" jdbcType="VARCHAR" property="deviceId" />
+    <result column="idfa" jdbcType="VARCHAR" property="idfa" />
+    <result column="idfv" jdbcType="VARCHAR" property="idfv" />
+    <result column="market" jdbcType="VARCHAR" property="market" />
+    <result column="create_time" jdbcType="INTEGER" property="createTime" />
+    <result column="update_time" jdbcType="INTEGER" property="updateTime" />
+    <result column="extend1" jdbcType="VARCHAR" property="extend1" />
+    <result column="extend2" jdbcType="VARCHAR" property="extend2" />
+    <result column="extend3" jdbcType="VARCHAR" property="extend3" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    uid, vendor, client_name, client_version, os_name, os_version, device_name, device_id, 
+    idfa, idfv, market, create_time, update_time, extend1, extend2, extend3
+  </sql>
+  <select id="selectByExample" parameterType="com.alankin.ucenter.dao.model.UserExtraExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from user_extra
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from user_extra
+    where uid = #{uid,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from user_extra
+    where uid = #{uid,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.alankin.ucenter.dao.model.UserExtraExample">
+    delete from user_extra
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.alankin.ucenter.dao.model.UserExtra">
+    insert into user_extra (uid, vendor, client_name, 
+      client_version, os_name, os_version, 
+      device_name, device_id, idfa, 
+      idfv, market, create_time, 
+      update_time, extend1, extend2, 
+      extend3)
+    values (#{uid,jdbcType=BIGINT}, #{vendor,jdbcType=VARCHAR}, #{clientName,jdbcType=VARCHAR}, 
+      #{clientVersion,jdbcType=VARCHAR}, #{osName,jdbcType=VARCHAR}, #{osVersion,jdbcType=VARCHAR}, 
+      #{deviceName,jdbcType=VARCHAR}, #{deviceId,jdbcType=VARCHAR}, #{idfa,jdbcType=VARCHAR}, 
+      #{idfv,jdbcType=VARCHAR}, #{market,jdbcType=VARCHAR}, #{createTime,jdbcType=INTEGER}, 
+      #{updateTime,jdbcType=INTEGER}, #{extend1,jdbcType=VARCHAR}, #{extend2,jdbcType=VARCHAR}, 
+      #{extend3,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.alankin.ucenter.dao.model.UserExtra">
+    insert into user_extra
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="uid != null">
+        uid,
+      </if>
+      <if test="vendor != null">
+        vendor,
+      </if>
+      <if test="clientName != null">
+        client_name,
+      </if>
+      <if test="clientVersion != null">
+        client_version,
+      </if>
+      <if test="osName != null">
+        os_name,
+      </if>
+      <if test="osVersion != null">
+        os_version,
+      </if>
+      <if test="deviceName != null">
+        device_name,
+      </if>
+      <if test="deviceId != null">
+        device_id,
+      </if>
+      <if test="idfa != null">
+        idfa,
+      </if>
+      <if test="idfv != null">
+        idfv,
+      </if>
+      <if test="market != null">
+        market,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="extend1 != null">
+        extend1,
+      </if>
+      <if test="extend2 != null">
+        extend2,
+      </if>
+      <if test="extend3 != null">
+        extend3,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="uid != null">
+        #{uid,jdbcType=BIGINT},
+      </if>
+      <if test="vendor != null">
+        #{vendor,jdbcType=VARCHAR},
+      </if>
+      <if test="clientName != null">
+        #{clientName,jdbcType=VARCHAR},
+      </if>
+      <if test="clientVersion != null">
+        #{clientVersion,jdbcType=VARCHAR},
+      </if>
+      <if test="osName != null">
+        #{osName,jdbcType=VARCHAR},
+      </if>
+      <if test="osVersion != null">
+        #{osVersion,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceName != null">
+        #{deviceName,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceId != null">
+        #{deviceId,jdbcType=VARCHAR},
+      </if>
+      <if test="idfa != null">
+        #{idfa,jdbcType=VARCHAR},
+      </if>
+      <if test="idfv != null">
+        #{idfv,jdbcType=VARCHAR},
+      </if>
+      <if test="market != null">
+        #{market,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=INTEGER},
+      </if>
+      <if test="extend1 != null">
+        #{extend1,jdbcType=VARCHAR},
+      </if>
+      <if test="extend2 != null">
+        #{extend2,jdbcType=VARCHAR},
+      </if>
+      <if test="extend3 != null">
+        #{extend3,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.alankin.ucenter.dao.model.UserExtraExample" resultType="java.lang.Long">
+    select count(*) from user_extra
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update user_extra
+    <set>
+      <if test="record.uid != null">
+        uid = #{record.uid,jdbcType=BIGINT},
+      </if>
+      <if test="record.vendor != null">
+        vendor = #{record.vendor,jdbcType=VARCHAR},
+      </if>
+      <if test="record.clientName != null">
+        client_name = #{record.clientName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.clientVersion != null">
+        client_version = #{record.clientVersion,jdbcType=VARCHAR},
+      </if>
+      <if test="record.osName != null">
+        os_name = #{record.osName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.osVersion != null">
+        os_version = #{record.osVersion,jdbcType=VARCHAR},
+      </if>
+      <if test="record.deviceName != null">
+        device_name = #{record.deviceName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.deviceId != null">
+        device_id = #{record.deviceId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.idfa != null">
+        idfa = #{record.idfa,jdbcType=VARCHAR},
+      </if>
+      <if test="record.idfv != null">
+        idfv = #{record.idfv,jdbcType=VARCHAR},
+      </if>
+      <if test="record.market != null">
+        market = #{record.market,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null">
+        create_time = #{record.createTime,jdbcType=INTEGER},
+      </if>
+      <if test="record.updateTime != null">
+        update_time = #{record.updateTime,jdbcType=INTEGER},
+      </if>
+      <if test="record.extend1 != null">
+        extend1 = #{record.extend1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.extend2 != null">
+        extend2 = #{record.extend2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.extend3 != null">
+        extend3 = #{record.extend3,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update user_extra
+    set uid = #{record.uid,jdbcType=BIGINT},
+      vendor = #{record.vendor,jdbcType=VARCHAR},
+      client_name = #{record.clientName,jdbcType=VARCHAR},
+      client_version = #{record.clientVersion,jdbcType=VARCHAR},
+      os_name = #{record.osName,jdbcType=VARCHAR},
+      os_version = #{record.osVersion,jdbcType=VARCHAR},
+      device_name = #{record.deviceName,jdbcType=VARCHAR},
+      device_id = #{record.deviceId,jdbcType=VARCHAR},
+      idfa = #{record.idfa,jdbcType=VARCHAR},
+      idfv = #{record.idfv,jdbcType=VARCHAR},
+      market = #{record.market,jdbcType=VARCHAR},
+      create_time = #{record.createTime,jdbcType=INTEGER},
+      update_time = #{record.updateTime,jdbcType=INTEGER},
+      extend1 = #{record.extend1,jdbcType=VARCHAR},
+      extend2 = #{record.extend2,jdbcType=VARCHAR},
+      extend3 = #{record.extend3,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.alankin.ucenter.dao.model.UserExtra">
+    update user_extra
+    <set>
+      <if test="vendor != null">
+        vendor = #{vendor,jdbcType=VARCHAR},
+      </if>
+      <if test="clientName != null">
+        client_name = #{clientName,jdbcType=VARCHAR},
+      </if>
+      <if test="clientVersion != null">
+        client_version = #{clientVersion,jdbcType=VARCHAR},
+      </if>
+      <if test="osName != null">
+        os_name = #{osName,jdbcType=VARCHAR},
+      </if>
+      <if test="osVersion != null">
+        os_version = #{osVersion,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceName != null">
+        device_name = #{deviceName,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceId != null">
+        device_id = #{deviceId,jdbcType=VARCHAR},
+      </if>
+      <if test="idfa != null">
+        idfa = #{idfa,jdbcType=VARCHAR},
+      </if>
+      <if test="idfv != null">
+        idfv = #{idfv,jdbcType=VARCHAR},
+      </if>
+      <if test="market != null">
+        market = #{market,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=INTEGER},
+      </if>
+      <if test="extend1 != null">
+        extend1 = #{extend1,jdbcType=VARCHAR},
+      </if>
+      <if test="extend2 != null">
+        extend2 = #{extend2,jdbcType=VARCHAR},
+      </if>
+      <if test="extend3 != null">
+        extend3 = #{extend3,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where uid = #{uid,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.alankin.ucenter.dao.model.UserExtra">
+    update user_extra
+    set vendor = #{vendor,jdbcType=VARCHAR},
+      client_name = #{clientName,jdbcType=VARCHAR},
+      client_version = #{clientVersion,jdbcType=VARCHAR},
+      os_name = #{osName,jdbcType=VARCHAR},
+      os_version = #{osVersion,jdbcType=VARCHAR},
+      device_name = #{deviceName,jdbcType=VARCHAR},
+      device_id = #{deviceId,jdbcType=VARCHAR},
+      idfa = #{idfa,jdbcType=VARCHAR},
+      idfv = #{idfv,jdbcType=VARCHAR},
+      market = #{market,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=INTEGER},
+      update_time = #{updateTime,jdbcType=INTEGER},
+      extend1 = #{extend1,jdbcType=VARCHAR},
+      extend2 = #{extend2,jdbcType=VARCHAR},
+      extend3 = #{extend3,jdbcType=VARCHAR}
+    where uid = #{uid,jdbcType=BIGINT}
+  </update>
+  <cache type="org.mybatis.caches.ehcache.LoggingEhcache" />
+</mapper>
