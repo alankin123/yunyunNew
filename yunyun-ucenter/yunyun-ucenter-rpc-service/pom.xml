@@ -47,6 +47,28 @@
                 <env>prod</env>
             </properties>
         </profile>
+
+        <profile>
+            <id>dev-home</id>
+            <properties>
+                <env>dev-home</env>
+            </properties>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+        </profile>
+        <profile>
+            <id>test-home</id>
+            <properties>
+                <env>test-home</env>
+            </properties>
+        </profile>
+        <profile>
+            <id>prod-home</id>
+            <properties>
+                <env>prod-home</env>
+            </properties>
+        </profile>
     </profiles>
 
     <build>
