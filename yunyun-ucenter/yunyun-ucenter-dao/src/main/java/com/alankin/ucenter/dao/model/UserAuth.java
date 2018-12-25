@@ -1,8 +1,13 @@
 package com.alankin.ucenter.dao.model;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
 import java.io.Serializable;
 
+@ApiModel(value="UserAuth对象",description="用户对象user")
 public class UserAuth implements Serializable {
+    @ApiModelProperty(hidden = true)
     private Long id;
 
     /**
@@ -10,6 +15,7 @@ public class UserAuth implements Serializable {
      *
      * @mbg.generated
      */
+    @ApiModelProperty(hidden = true)
     private Long uid;
 
     /**
@@ -17,6 +23,7 @@ public class UserAuth implements Serializable {
      *
      * @mbg.generated
      */
+    @ApiModelProperty(hidden = true)
     private Byte identityType;
 
     /**
@@ -24,6 +31,7 @@ public class UserAuth implements Serializable {
      *
      * @mbg.generated
      */
+    @ApiModelProperty(value = "必填 账号不为空",required = true,example = "18780169455")
     private String identifier;
 
     /**
@@ -31,6 +39,7 @@ public class UserAuth implements Serializable {
      *
      * @mbg.generated
      */
+    @ApiModelProperty(value = "必填 密码不能为空",required = true,example = "123456" )
     private String certificate;
 
     /**
@@ -38,6 +47,7 @@ public class UserAuth implements Serializable {
      *
      * @mbg.generated
      */
+    @ApiModelProperty(hidden = true)
     private Integer createTime;
 
     /**
@@ -45,6 +55,7 @@ public class UserAuth implements Serializable {
      *
      * @mbg.generated
      */
+    @ApiModelProperty(hidden = true)
     private Integer updateTime;
 
     private static final long serialVersionUID = 1L;

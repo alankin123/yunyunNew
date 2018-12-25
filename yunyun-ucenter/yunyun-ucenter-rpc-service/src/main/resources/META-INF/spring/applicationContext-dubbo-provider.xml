@@ -20,6 +20,8 @@
 
     <!-- 认证方式 -->
     <bean id="userBaseServiceImpl" class="com.alankin.ucenter.rpc.service.impl.UserBaseServiceImpl"/>
+    <bean id="userAuthServiceImpl" class="com.alankin.ucenter.rpc.service.impl.UserAuthServiceImpl"/>
     <dubbo:service interface="com.alankin.ucenter.rpc.api.UserBaseService" ref="userBaseServiceImpl" timeout="10000"/>
+    <dubbo:service interface="com.alankin.ucenter.rpc.api.UserAuthService" ref="userAuthServiceImpl" timeout="10000"/>
 
 </beans>

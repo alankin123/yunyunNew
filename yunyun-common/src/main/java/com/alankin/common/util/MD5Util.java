@@ -3,7 +3,7 @@ package com.alankin.common.util;
 import java.security.MessageDigest;
 
 /**
- * Created by shuzheng on 2017/1/19.
+ * Created by alankin on 2017/1/19.
  */
 public class MD5Util {
 

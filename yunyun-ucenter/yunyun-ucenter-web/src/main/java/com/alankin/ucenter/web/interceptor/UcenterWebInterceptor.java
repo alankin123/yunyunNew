@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  * 公共拦截器
- * Created by shuzheng on 2017/3/25.
+ * Created by alankin on 2017/3/25.
  */
 public class UcenterWebInterceptor extends HandlerInterceptorAdapter {
 

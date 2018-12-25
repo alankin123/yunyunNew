@@ -22,7 +22,7 @@ import javax.servlet.http.HttpServletRequest;
 
 /**
  * 注册控制器
- * Created by shuzheng on 2017/5/2.
+ * Created by alankin.
  */
 @Controller
 @Api(value = "注册控制器", description = "注册控制器")

@@ -8,7 +8,7 @@ import java.util.Map;
 
 /**
  * 代码生成类
- * Created by ZhangShuzheng on 2017/4/26.
+ * Created by alankin on 2017/4/26.
  */
 public class Generator {
 

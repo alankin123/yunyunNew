@@ -2,9 +2,9 @@ package com.alankin.ucenter.rpc;
 
 /**
  * 服务启动类
- * Created by ZhangShuzheng on 2017/6/19.
+ * Created by alankin.
  */
-public class ZhengUcenterRpcServiceApplication {
+public class UcenterRpcServiceApplication {
 
 	public static void main(String[] args) {
 		com.alibaba.dubbo.container.Main.main(args);

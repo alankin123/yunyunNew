@@ -13,7 +13,7 @@ import java.util.Map;
 
 /**
  * spring容器初始化完成事件
- * Created by shuzheng on 2017/1/7.
+ * Created by alankin on 2017/1/7.
  */
 public class ApplicationContextListener implements ApplicationListener<ContextRefreshedEvent> {
 
