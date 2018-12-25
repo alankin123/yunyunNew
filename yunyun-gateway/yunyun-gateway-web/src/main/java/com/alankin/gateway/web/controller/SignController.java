@@ -1,6 +1,9 @@
 package com.alankin.gateway.web.controller;
 
 import com.alankin.common.base.BaseController;
+import com.alankin.common.util.StringUtil;
+import com.alankin.common.util.key.SnowflakeIdWorker;
+import com.alankin.common.util.key.SystemClock;
 import com.alankin.common.validator.NotNullValidator;
 import com.alankin.ucenter.common.constant.UcenterResult;
 import com.alankin.ucenter.common.constant.UcenterResultConstant;
@@ -14,10 +17,12 @@ import com.baidu.unbiz.fluentvalidator.FluentValidator;
 import com.baidu.unbiz.fluentvalidator.ResultCollectors;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -42,21 +47,60 @@ public class SignController extends BaseController {
     @ApiOperation(value = "用户注册")
     @RequestMapping(value = "/signup")
     @ResponseBody
-    public Object signup(@RequestBody ModelMap vo) {
-//        UserBase userBase = new UserBase();
-//        userBase.setUid(new SnowflakeIdWorker(0, 0).nextId());
-//        userBase.setBirthday(SystemClock.now());
-//        userBase.setCreateTime(1111);
-//        userBase.setUpdateTime(222);
-//        userBase.setPushToken("3333");
-//        userBase.setEmail("465628112@qq.com");
-//        userBase.setGender(true);
-//        userBase.setMobile("18752456854");
-//        userBase.setNickName("摇尾巴的狗");
-//        if (userBaseService.insertSelective(userBase) > 0) {
-//            return new UcenterResult(UcenterResultConstant.SUCCESS, userBase);
-//        }
-        return new UcenterResult(UcenterResultConstant.SUCCESS, vo);
+    @Transactional
+    public Object signup(@RequestBody UserAuth vo) {
+        ComplexResult result = FluentValidator.checkAll()
+                .on(vo.getIdentifier(), new NotNullValidator("Identifier"))
+                .on(vo.getCertificate(), new NotNullValidator("Certificate"))
+                .doValidate()
+                .result(ResultCollectors.toComplex());
+        if (!result.isSuccess()) {
+            return result.getErrors().get(0);
+        }
+
+        UserAuthExample example = new UserAuthExample();
+        example.createCriteria()
+                .andIdentifierEqualTo(vo.getIdentifier());
+        UserAuth userAuth = userAuthService.selectFirstByExample(example);
+        if (userAuth != null) {
+            return new UcenterResult(UcenterResultConstant.FAILED, "存在该账号!");
+        }
+        //不存在账号时，创建用户
+        UserBase userBase = new UserBase();
+        userBase.setUid(new SnowflakeIdWorker(0, 0).nextId());
+        int curentTime = (int) (SystemClock.now() / 1000);
+        userBase.setCreateTime(curentTime);
+
+        //获得登录账号
+        //注册来源：1手机号 2邮箱 3用户名 4qq 5微信 6腾讯微博 7新浪微博
+        String identifier = vo.getIdentifier();
+        if (vo.getIdentityType() == null) {
+            if (StringUtil.isPhoneNumber(identifier)) {
+                userBase.setMobile(identifier);
+                userBase.setRegisterSource((byte) 1);
+                userBase.setMobileBindTime(curentTime);
+            } else if (StringUtil.isEmail(identifier)) {
+                userBase.setEmail(identifier);
+                userBase.setRegisterSource((byte) 2);
+                userBase.setEmailBindTime(curentTime);
+            } else {
+                userBase.setNickName(identifier);
+                userBase.setRegisterSource((byte) 3);
+            }
+        } else {//第三方账号
+            userBase.setRegisterSource(vo.getIdentityType());
+            userBase.setPushToken(identifier);
+        }
+
+        if (userBaseService.insertSelective(userBase) > 0) {
+            vo.setUid(userBase.getUid());
+            vo.setCreateTime(curentTime);
+            vo.setIdentityType(userBase.getRegisterSource());
+            userAuthService.insertSelective(vo);
+            return new UcenterResult(UcenterResultConstant.SUCCESS, userBase);
+        } else {
+            throw new RuntimeException("注册失败");
+        }
     }
 
     //登录

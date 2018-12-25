@@ -154,4 +154,42 @@ public class StringUtil {
         }
     }
 
+    /**
+     * IP地址的判断方法
+     * @param ip
+     * @return
+     */
+    public static boolean isIp(String ip) {
+        if (ip == null || "".equals(ip))
+            return false;
+        String regex = "^(1\\d{2}|2[0-4]\\d|25[0-5]|[1-9]\\d|[1-9])\\."
+                + "(1\\d{2}|2[0-4]\\d|25[0-5]|[1-9]\\d|\\d)\\."
+                + "(1\\d{2}|2[0-4]\\d|25[0-5]|[1-9]\\d|\\d)\\."
+                + "(1\\d{2}|2[0-4]\\d|25[0-5]|[1-9]\\d|\\d)$";
+        return ip.matches(regex);
+    }
+
+    /**
+     * 判断是否是正确的邮箱地址
+     * @param email
+     * @return
+     */
+    public static boolean isEmail(String email) {
+        if (email == null || "".equals(email)) return false;
+        String regex = "\\w+([-+.]\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*";
+        return email.matches(regex);
+    }
+
+    /**
+     * 判断是否是手机号码
+     * @param phoneNumber
+     * @return
+     */
+    public static boolean isPhoneNumber(String phoneNumber) {
+        if (phoneNumber == null || "".equals(phoneNumber))
+            return false;
+        String regex = "^1[3|4|5|8][0-9]\\d{8}$";
+        return phoneNumber.matches(regex);
+    }
+
 }

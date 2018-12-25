@@ -103,8 +103,7 @@ public abstract class BaseServiceImpl<Mapper, Record, Example> implements BaseSe
         } catch (IllegalAccessException e) {
             e.printStackTrace();
         } catch (InvocationTargetException e) {
-            Throwable t = e.getTargetException();// 获取目标异常
-            t.printStackTrace();
+            e.getTargetException().printStackTrace();
         } catch (NoSuchMethodException e) {
             e.printStackTrace();
         }
@@ -122,7 +121,7 @@ public abstract class BaseServiceImpl<Mapper, Record, Example> implements BaseSe
         } catch (IllegalAccessException e) {
             e.printStackTrace();
         } catch (InvocationTargetException e) {
-            e.printStackTrace();
+            e.getTargetException().printStackTrace();
         } catch (NoSuchMethodException e) {
             e.printStackTrace();
         }
@@ -140,7 +139,7 @@ public abstract class BaseServiceImpl<Mapper, Record, Example> implements BaseSe
         } catch (IllegalAccessException e) {
             e.printStackTrace();
         } catch (InvocationTargetException e) {
-            e.printStackTrace();
+            e.getTargetException().printStackTrace();
         } catch (NoSuchMethodException e) {
             e.printStackTrace();
         }
@@ -159,7 +158,7 @@ public abstract class BaseServiceImpl<Mapper, Record, Example> implements BaseSe
         } catch (IllegalAccessException e) {
             e.printStackTrace();
         } catch (InvocationTargetException e) {
-            e.printStackTrace();
+            e.getTargetException().printStackTrace();
         } catch (NoSuchMethodException e) {
             e.printStackTrace();
         }
@@ -178,7 +177,7 @@ public abstract class BaseServiceImpl<Mapper, Record, Example> implements BaseSe
         } catch (IllegalAccessException e) {
             e.printStackTrace();
         } catch (InvocationTargetException e) {
-            e.printStackTrace();
+            e.getTargetException().printStackTrace();
         } catch (NoSuchMethodException e) {
             e.printStackTrace();
         }
@@ -197,7 +196,7 @@ public abstract class BaseServiceImpl<Mapper, Record, Example> implements BaseSe
         } catch (IllegalAccessException e) {
             e.printStackTrace();
         } catch (InvocationTargetException e) {
-            e.printStackTrace();
+            e.getTargetException().printStackTrace();
         } catch (NoSuchMethodException e) {
             e.printStackTrace();
         }
@@ -216,7 +215,7 @@ public abstract class BaseServiceImpl<Mapper, Record, Example> implements BaseSe
         } catch (IllegalAccessException e) {
             e.printStackTrace();
         } catch (InvocationTargetException e) {
-            e.printStackTrace();
+            e.getTargetException().printStackTrace();
         } catch (NoSuchMethodException e) {
             e.printStackTrace();
         }
@@ -236,7 +235,7 @@ public abstract class BaseServiceImpl<Mapper, Record, Example> implements BaseSe
         } catch (IllegalAccessException e) {
             e.printStackTrace();
         } catch (InvocationTargetException e) {
-            e.printStackTrace();
+            e.getTargetException().printStackTrace();
         } catch (NoSuchMethodException e) {
             e.printStackTrace();
         }
@@ -256,7 +255,7 @@ public abstract class BaseServiceImpl<Mapper, Record, Example> implements BaseSe
         } catch (IllegalAccessException e) {
             e.printStackTrace();
         } catch (InvocationTargetException e) {
-            e.printStackTrace();
+            e.getTargetException().printStackTrace();
         } catch (NoSuchMethodException e) {
             e.printStackTrace();
         }
@@ -292,7 +291,7 @@ public abstract class BaseServiceImpl<Mapper, Record, Example> implements BaseSe
         } catch (IllegalAccessException e) {
             e.printStackTrace();
         } catch (InvocationTargetException e) {
-            e.printStackTrace();
+            e.getTargetException().printStackTrace();
         } catch (NoSuchMethodException e) {
             e.printStackTrace();
         }
@@ -310,7 +309,7 @@ public abstract class BaseServiceImpl<Mapper, Record, Example> implements BaseSe
         } catch (IllegalAccessException e) {
             e.printStackTrace();
         } catch (InvocationTargetException e) {
-            e.printStackTrace();
+            e.getTargetException().printStackTrace();
         } catch (NoSuchMethodException e) {
             e.printStackTrace();
         }
@@ -328,7 +327,7 @@ public abstract class BaseServiceImpl<Mapper, Record, Example> implements BaseSe
         } catch (IllegalAccessException e) {
             e.printStackTrace();
         } catch (InvocationTargetException e) {
-            e.printStackTrace();
+            e.getTargetException().printStackTrace();
         } catch (NoSuchMethodException e) {
             e.printStackTrace();
         }
@@ -346,7 +345,7 @@ public abstract class BaseServiceImpl<Mapper, Record, Example> implements BaseSe
         } catch (IllegalAccessException e) {
             e.printStackTrace();
         } catch (InvocationTargetException e) {
-            e.printStackTrace();
+            e.getTargetException().printStackTrace();
         } catch (NoSuchMethodException e) {
             e.printStackTrace();
         }
@@ -364,7 +363,7 @@ public abstract class BaseServiceImpl<Mapper, Record, Example> implements BaseSe
         } catch (IllegalAccessException e) {
             e.printStackTrace();
         } catch (InvocationTargetException e) {
-            e.printStackTrace();
+            e.getTargetException().printStackTrace();
         } catch (NoSuchMethodException e) {
             e.printStackTrace();
         }
@@ -382,7 +381,7 @@ public abstract class BaseServiceImpl<Mapper, Record, Example> implements BaseSe
         } catch (IllegalAccessException e) {
             e.printStackTrace();
         } catch (InvocationTargetException e) {
-            e.printStackTrace();
+            e.getTargetException().printStackTrace();
         } catch (NoSuchMethodException e) {
             e.printStackTrace();
         }
@@ -412,7 +411,7 @@ public abstract class BaseServiceImpl<Mapper, Record, Example> implements BaseSe
         } catch (IllegalAccessException e) {
             e.printStackTrace();
         } catch (InvocationTargetException e) {
-            e.printStackTrace();
+            e.getTargetException().printStackTrace();
         } catch (NoSuchMethodException e) {
             e.printStackTrace();
         }
